@@ -1,7 +1,9 @@
+"use client";
+import { FormRegister } from "@/app/components/formRegister";
+import { PersonalData } from "@/app/components/personalData";
 import { useState } from "react";
-import Register from "../auth/register/page";
 
-export const Stepper = () => {
+export default function Stepper() {
   const [step, setStep] = useState(1);
 
   const stepData = [
@@ -11,7 +13,7 @@ export const Stepper = () => {
     { detail: "Finish", icon: "bi bi-check-circle" },
   ];
   return (
-    <form onSubmit={} className="d-flex flex-column w-100">
+    <form className="d-flex flex-column w-100">
       {/* Step header */}
       <div className="nav nav-pills justify-content-center mb-4">
         {stepData.map((label, index) => (
@@ -25,8 +27,9 @@ export const Stepper = () => {
           </div>
         ))}
         {/* Step content */}
-        {step === 1 && <Register />}
+        {step === 1 && <FormRegister />}
+        {step === 2 && <PersonalData />}
       </div>
     </form>
   );
-};
+}

@@ -1,5 +1,7 @@
 "use client";
 
+import { Agreement } from "@/app/components/ageement";
+import { FinishRegister } from "@/app/components/finishRegister";
 import { FormRegister } from "@/app/components/formRegister";
 import { PersonalData } from "@/app/components/personalData";
 import { useRouter } from "next/navigation";
@@ -7,11 +9,13 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 export default function Register() {
+  // State for Register Form
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [cfPassword, setCfPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
   const [step, setStep] = useState(1);
 
   const router = useRouter();
@@ -63,6 +67,7 @@ export default function Register() {
         {stepData.map((label, index) => (
           <div key={index} className="nav-item">
             <button
+              type="button"
               className={`nav-link ${step === index + 1 ? "active" : ""}`}
               onClick={() => setStep(index + 1)}
             >
@@ -71,8 +76,22 @@ export default function Register() {
           </div>
         ))}
         {/* Step content */}
-        {step === 1 && <FormRegister />}
+        {step === 1 && (
+          <FormRegister
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            cfPassword={cfPassword}
+            setCfPassword={setCfPassword}
+            error={error}
+            setError={setError}
+            loading={loading}
+          />
+        )}
         {step === 2 && <PersonalData />}
+        {step === 3 && <Agreement />}
+        {step === 4 && <FinishRegister />}
       </div>
     </form>
   );
