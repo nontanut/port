@@ -11,7 +11,7 @@ export const FormRegister = (porps: {
 }) => {
   return (
     <>
-      <h1 className="fw-bold text-white">Register</h1>
+      <h3 className="fw-bold text-white">Create User</h3>
       {porps.error && <p className="text-danger text-center">{porps.error}</p>}
 
       <div className="container-fluid d-flex flex-column px-5">

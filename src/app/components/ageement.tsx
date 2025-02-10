@@ -5,12 +5,11 @@ export const Agreement = (props: {
   consentImprove: boolean;
   setConsentImprove: (value: boolean) => void;
 }) => {
-  console.log(props.consentImprove, props.consentPersonal);
   return (
     <>
-      <div className="fw-bold text-center pe-4">
-        PDPA <br />
-        <span className="subtitle-pdpa">(Personal Data Protection Act)</span>
+      <div className="text-center pe-4">
+        <h3 className="fw-bold">PDPA</h3>
+        <div className="subtitle-pdpa">(Personal Data Protection Act)</div>
         <div
           data-bs-spy="scroll"
           className="text-start mt-3 scrollbar px-2 text-justify"

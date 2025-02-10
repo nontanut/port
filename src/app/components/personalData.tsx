@@ -21,7 +21,7 @@ export const PersonalData = (props: {
 }) => {
   return (
     <div className="container-fluid d-flex flex-column px-5">
-      <h1 className="fw-bold text-white text-center">Register</h1>
+      <h3 className="fw-bold text-white text-center">Persoanal Data</h3>
       {props.error && <p className="text-danger text-center">{props.error}</p>}
 
       <label className="my-2 w-100">
