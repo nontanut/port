@@ -1,5 +1,6 @@
 "use client";
-export const PersonalData = (porps: {
+
+export const PersonalData = (props: {
   name: string;
   setName: (value: string) => void;
   surname: string;
@@ -18,97 +19,95 @@ export const PersonalData = (porps: {
   step: number;
   setStep: (value: number) => void;
 }) => {
-  console.log(porps.gender);
   return (
-    <>
-      <h1 className="fw-bold text-white">Register</h1>
-      {porps.error && <p className="text-danger text-center">{porps.error}</p>}
-      <label className="my-2">
+    <div className="container-fluid d-flex flex-column px-5">
+      <h1 className="fw-bold text-white text-center">Register</h1>
+      {props.error && <p className="text-danger text-center">{props.error}</p>}
+
+      <label className="my-2 w-100">
         Name
-        <br />
         <input
-          className="form-control"
+          className="form-control w-100"
           name="name"
           type="text"
-          value={porps.name}
-          onChange={(e) => porps.setName(e.target.value)}
+          value={props.name}
+          onChange={(e) => props.setName(e.target.value)}
           aria-label="name"
         />
       </label>
-      <label className="my-2">
+
+      <label className="my-2 w-100">
         Surname
-        <br />
         <input
-          className="form-control"
+          className="form-control w-100"
           name="surname"
           type="text"
-          value={porps.surname}
-          onChange={(e) => porps.setSurname(e.target.value)}
+          value={props.surname}
+          onChange={(e) => props.setSurname(e.target.value)}
           aria-label="surname"
         />
       </label>
-      <label className="my-2">
+
+      <label className="my-2 w-100">
         Phone
-        <br />
         <input
-          className="form-control"
+          className="form-control w-100"
           name="phone"
           type="text"
-          value={porps.phone}
-          onChange={(e) => porps.setPhone(e.target.value)}
+          value={props.phone}
+          onChange={(e) => props.setPhone(e.target.value)}
           aria-label="phone"
         />
       </label>
-      <label className="my-2">
+
+      <label className="my-2 w-100">
         Birthday
-        <br />
         <input
-          className="form-control"
-          style={{ minWidth: "100%", width: "100%" }}
+          className="form-control w-100"
           name="birthday"
           type="date"
-          value={porps.phone}
-          onChange={(e) => porps.setPhone(e.target.value)}
+          value={props.birthday}
+          onChange={(e) => props.setBirthday(e.target.value)}
           aria-label="birthday"
         />
       </label>
-      <label className="my-2">
+
+      <label className="my-2 w-100">
         Gender
-        <br />
         <select
           name="gender"
-          className="form-control"
-          value={porps.gender}
-          onChange={(e) => porps.setGender(e.target.value)}
+          className="form-select w-100"
+          value={props.gender}
+          onChange={(e) => props.setGender(e.target.value)}
         >
           <option value="F">Female</option>
           <option value="M">Male</option>
         </select>
       </label>
-      <label className="my-2">
+
+      <label className="my-2 w-100">
         Address
-        <br />
         <input
-          className="form-control"
+          className="form-control w-100"
           name="address"
           type="text"
-          value={porps.address}
-          onChange={(e) => porps.setAddress(e.target.value)}
+          value={props.address}
+          onChange={(e) => props.setAddress(e.target.value)}
           aria-label="address"
         />
       </label>
-      <label className="my-2">
+
+      <label className="my-2 w-100">
         Zipcode
-        <br />
         <input
-          className="form-control"
+          className="form-control w-100"
           name="zipcode"
           type="text"
-          value={porps.zipcode}
-          onChange={(e) => porps.setZipcode(e.target.value)}
+          value={props.zipcode}
+          onChange={(e) => props.setZipcode(e.target.value)}
           aria-label="zipcode"
         />
       </label>
-    </>
+    </div>
   );
 };

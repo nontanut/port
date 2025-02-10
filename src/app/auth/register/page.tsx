@@ -25,7 +25,8 @@ export default function Register() {
   const [address, setAddress] = useState("");
 
   // State for Agreement
-  const [accept, setAccept] = useState(false);
+  const [consentPesonal, setConsentPersonal] = useState(false);
+  const [consentImprove, setConsentImprove] = useState(false);
 
   const [error, setError] = useState<string | null>(null);
   const [step, setStep] = useState(1);
@@ -43,11 +44,24 @@ export default function Register() {
     e.preventDefault();
     setError(null);
 
+    // Error Response FormRegister
     if (!username) return setError("Username is required.");
     if (!password) return setError("Password is required.");
     if (password.length < 6)
       return setError("Password must be at least 6 characters.");
     if (password !== cfPassword) return setError("Passwords do not match.");
+
+    // Error Respone PersonalData
+    if (
+      !name &&
+      !surname &&
+      !birthday &&
+      !phone &&
+      !gender &&
+      !zipcode &&
+      !address
+    )
+      return setError("All of personal data is required.");
 
     setLoading(true);
 
@@ -83,7 +97,7 @@ export default function Register() {
         {stepData.map((label, index) => (
           <div
             key={index}
-            className="nav-item d-flex justify-content-center text-center align-items-center"
+            className="nav-item d-flex justify-content-center text-center align-items-center step-nav"
           >
             <button
               type="button"
@@ -94,7 +108,7 @@ export default function Register() {
             >
               <i className={label.icon} />
             </button>
-            <span className="mx-3">------</span>
+            <span className="mx-3 step-detail">{label.detail}</span>
           </div>
         ))}
 
@@ -102,7 +116,7 @@ export default function Register() {
         <div className="d-flex flex-column w-100">
           <div className="container d-flex align-items-center justify-content-center mt-5">
             <div
-              className="d-flex flex-column align-items-center rounded p-5 bg-dark text-white"
+              className="d-flex flex-column align-items-center rounded py-5 bg-dark text-white"
               style={{ width: "370px" }}
             >
               {step === 1 && (
@@ -138,7 +152,14 @@ export default function Register() {
                   setStep={setStep}
                 />
               )}
-              {step === 3 && <Agreement />}
+              {step === 3 && (
+                <Agreement
+                  consentPersonal={consentPesonal}
+                  setConsentPersonal={setConsentPersonal}
+                  consentImprove={consentImprove}
+                  setConsentImprove={setConsentImprove}
+                />
+              )}
               {step === 4 && <FinishRegister />}
 
               {/* Button */}
