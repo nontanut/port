@@ -1,5 +1,7 @@
 "use client";
 
+import { FormRegister } from "@/app/components/formRegister";
+import { PersonalData } from "@/app/components/personalData";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Swal from "sweetalert2";
@@ -10,8 +12,16 @@ export default function Register() {
   const [cfPassword, setCfPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState(1);
 
   const router = useRouter();
+
+  const stepData = [
+    { detail: "Create User", icon: "bi bi-pencil" },
+    { detail: "Personal Data", icon: "bi bi-info-circle" },
+    { detail: "Ageement", icon: "bi bi-book" },
+    { detail: "Finish", icon: "bi bi-check-circle" },
+  ];
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,69 +58,21 @@ export default function Register() {
 
   return (
     <form onSubmit={handleRegister} className="d-flex flex-column w-100">
-      <div className="container d-flex align-items-center justify-content-center vh-100">
-        <div
-          className="d-flex flex-column align-items-center rounded p-5 bg-dark text-white"
-          style={{ width: "370px" }}
-        >
-          <h1 className="fw-bold text-white">Register</h1>
-          {error && <p className="text-danger text-center">{error}</p>}
-
-          <label className="my-2">
-            Username
-            <br />
-            <input
-              name="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              aria-label="Username"
-            />
-          </label>
-
-          <label className="my-2">
-            Password
-            <br />
-            <input
-              name="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              aria-label="Password"
-            />
-          </label>
-
-          <label className="my-2">
-            Confirm Password
-            <br />
-            <input
-              name="cfPassword"
-              type="password"
-              value={cfPassword}
-              onChange={(e) => setCfPassword(e.target.value)}
-              aria-label="Confirm Password"
-            />
-          </label>
-
-          <button
-            className="btn btn-outline-warning fw-bold my-2 border-2"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? (
-              <>
-                <span
-                  className="spinner-border spinner-border-sm me-2"
-                  role="status"
-                  aria-hidden="true"
-                ></span>
-                Loading...
-              </>
-            ) : (
-              "Register"
-            )}
-          </button>
-        </div>
+      {/* Step header */}
+      <div className="nav nav-pills justify-content-center mb-4">
+        {stepData.map((label, index) => (
+          <div key={index} className="nav-item">
+            <button
+              className={`nav-link ${step === index + 1 ? "active" : ""}`}
+              onClick={() => setStep(index + 1)}
+            >
+              {label.detail}
+            </button>
+          </div>
+        ))}
+        {/* Step content */}
+        {step === 1 && <FormRegister />}
+        {step === 2 && <PersonalData />}
       </div>
     </form>
   );
