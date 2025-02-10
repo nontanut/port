@@ -7,38 +7,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Gender {
-  M
-  F
-}
-
 model User {
-  id              Int @id @default(autoincrement())
-  name            String
-  password        String
-  user_name       String 
-  user_surname    String
-  birthday        Date
-  gender          Gender
-  phone_number    String @unique
-  address         String
-  createdAt       DateTime @default(now())
+  id                  Int @id @default(autoincrement())
+  name                String
+  password            String
+  customer_name       String 
+  customer_surname    String
+  birthday            Date
+  gender              String
+  phone_number        String @unique
+  zipcode             String
+  address             String
+  createdAt           DateTime @default(now())
 }
 
 model Product {
-  id              Int @id @default(autoincrement())
-  category        String
-  title           String
-  detail          String
-  stock           Int
-  price           Decimal @db.Numeric(10,2)
-  createdAt       DateTime @default(now())
+  id                  Int @id @default(autoincrement())
+  category            String
+  title               String
+  detail              String
+  stock               Int
+  price               Decimal @db.Numeric(10,2)
+  createdAt           DateTime @default(now())
 }
 
 model Sold {
-  id              Int @id @default(autoincrement())
-  product_id      Product @relation(fields: [product_id], references: [id]) 
-  price           Decimal @db.Numeric(10,2)
-  quantity        Int
-  createdAt       DateTime @default(now())
+  id                  Int @id @default(autoincrement())
+  product_id          Product @relation(fields: [product_id], references: [id]) 
+  price               Decimal @db.Numeric(10,2)
+  quantity            Int
+  createdAt           DateTime @default(now())
 }
