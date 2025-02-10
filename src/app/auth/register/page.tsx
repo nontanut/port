@@ -162,22 +162,32 @@ export default function Register() {
               )}
               {step === 4 && <FinishRegister />}
 
-              {/* Button */}
-              <div className="d-flex justify-content-between mt-4">
+              {/* Prev Button */}
+              <div className="d-flex justify-content-between  align-items-center w-100 px-5 mt-4">
                 <button
-                  className="btn btn-secondary"
+                  className="btn btn-outline-light fw-bold border-2"
                   onClick={() => setStep(step - 1)}
                   disabled={step === 1}
                 >
                   Previous
                 </button>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => setStep(step + 1)}
-                  disabled={step === 4}
-                >
-                  Next
-                </button>
+                {/* Next button */}
+                {step === 4 ? (
+                  <button
+                    className="btn btn-outline-warning fw-bold border-2"
+                    onClick={() => setStep(step + 1)}
+                  >
+                    Register
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-outline-danger fw-bold border-2"
+                    onClick={() => setStep(step + 1)}
+                    disabled={step === 4}
+                  >
+                    Next
+                  </button>
+                )}
               </div>
             </div>
           </div>

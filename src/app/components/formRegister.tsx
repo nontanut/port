@@ -14,44 +14,46 @@ export const FormRegister = (porps: {
       <h1 className="fw-bold text-white">Register</h1>
       {porps.error && <p className="text-danger text-center">{porps.error}</p>}
 
-      <label className="my-2">
-        Username
-        <br />
-        <input
-          className="form-control"
-          name="username"
-          type="text"
-          value={porps.username}
-          onChange={(e) => porps.setUsername(e.target.value)}
-          aria-label="Username"
-        />
-      </label>
+      <div className="container-fluid d-flex flex-column px-5">
+        <label className="my-2">
+          Username
+          <br />
+          <input
+            className="form-control"
+            name="username"
+            type="text"
+            value={porps.username}
+            onChange={(e) => porps.setUsername(e.target.value)}
+            aria-label="Username"
+          />
+        </label>
 
-      <label className="my-2">
-        Password
-        <br />
-        <input
-          className="form-control"
-          name="password"
-          type="password"
-          value={porps.password}
-          onChange={(e) => porps.setPassword(e.target.value)}
-          aria-label="Password"
-        />
-      </label>
+        <label className="my-2">
+          Password
+          <br />
+          <input
+            className="form-control"
+            name="password"
+            type="password"
+            value={porps.password}
+            onChange={(e) => porps.setPassword(e.target.value)}
+            aria-label="Password"
+          />
+        </label>
 
-      <label className="my-2">
-        Confirm Password
-        <br />
-        <input
-          className="form-control"
-          name="cfPassword"
-          type="password"
-          value={porps.cfPassword}
-          onChange={(e) => porps.setCfPassword(e.target.value)}
-          aria-label="Confirm Password"
-        />
-      </label>
+        <label className="my-2">
+          Confirm Password
+          <br />
+          <input
+            className="form-control"
+            name="cfPassword"
+            type="password"
+            value={porps.cfPassword}
+            onChange={(e) => porps.setCfPassword(e.target.value)}
+            aria-label="Confirm Password"
+          />
+        </label>
+      </div>
 
       <button
         className="btn btn-outline-warning fw-bold my-2 border-2"
