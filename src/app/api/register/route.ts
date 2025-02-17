@@ -6,28 +6,82 @@ const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   try {
-    const { name, password } = await req.json();
+    const {
+      name,
+      password,
+      customer_name,
+      customer_surname,
+      birthday,
+      gender,
+      phone_number,
+      zipcode,
+      address,
+      consent_data,
+      consent_improve,
+    } = await req.json();
 
+    // Error response
     if (!name || !password) {
       return NextResponse.json(
         { msg: "Name and password are required" },
         { status: 400 }
       );
+    } else if (!customer_name) {
+      return NextResponse.json(
+        { msg: "Your name is required" },
+        { status: 400 }
+      );
+    } else if (!customer_surname) {
+      return NextResponse.json(
+        { msg: "Your surname is required" },
+        { status: 400 }
+      );
+    } else if (!birthday) {
+      return NextResponse.json(
+        { msg: "Birth date is required" },
+        { status: 400 }
+      );
+    } else if (!gender) {
+      return NextResponse.json({ msg: "Gender is required" }, { status: 400 });
+    } else if (!phone_number) {
+      return NextResponse.json(
+        { msg: "Phone number is required" },
+        { status: 400 }
+      );
+    } else if (!zipcode) {
+      return NextResponse.json(
+        { msg: "Zip code is required" },
+        { status: 400 }
+      );
+    } else if (!address) {
+      return NextResponse.json({ msg: "Address is required" }, { status: 400 });
     }
 
-    const existingUser = await prisma.user.findUnique({ where: { name } });
+    const existingUser = await prisma.user.findUnique({
+      where: { phone_number },
+    });
 
     if (existingUser) {
       return NextResponse.json(
-        { msg: "Username already exists" },
+        { msg: "Phone already exists" },
         { status: 403 }
       );
     }
 
-    // Hash the password before saving it
-
     const user = await prisma.user.create({
-      data: { name, password },
+      data: {
+        name,
+        password,
+        customer_name,
+        customer_surname,
+        birthday: new Date(birthday),
+        gender,
+        phone_number,
+        zipcode,
+        address,
+        consent_data,
+        consent_improve,
+      },
     });
 
     // Create a JWT token

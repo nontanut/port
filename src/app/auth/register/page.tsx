@@ -65,10 +65,24 @@ export default function Register() {
 
     setLoading(true);
 
+    const formData = {
+      name: username,
+      password: password,
+      customer_name: name,
+      customer_surname: surname,
+      birthday: birthday,
+      gender: gender,
+      phone_number: phone,
+      zipcode: zipcode,
+      address: address,
+      consent_data: consentPesonal,
+      consent_improve: consentImprove,
+    };
+
     try {
       const res = await fetch("/api/register", {
         method: "POST",
-        body: JSON.stringify({ name: username, password }),
+        body: JSON.stringify(formData),
         headers: { "Content-Type": "application/json" },
       });
 
@@ -128,7 +142,6 @@ export default function Register() {
                   cfPassword={cfPassword}
                   setCfPassword={setCfPassword}
                   error={error}
-                  loading={loading}
                 />
               )}
               {step === 2 && (
@@ -175,9 +188,21 @@ export default function Register() {
                 {step === 4 ? (
                   <button
                     className="btn btn-outline-warning fw-bold border-2"
-                    onClick={() => setStep(step + 1)}
+                    type="submit"
+                    disabled={loading}
                   >
-                    Register
+                    {loading ? (
+                      <>
+                        <span
+                          className="spinner-border spinner-border-sm me-2"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                        Loading...
+                      </>
+                    ) : (
+                      "Register"
+                    )}
                   </button>
                 ) : (
                   <button

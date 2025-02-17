@@ -7,7 +7,6 @@ export const FormRegister = (porps: {
   cfPassword: string;
   setCfPassword: (value: string) => void;
   error: string | null;
-  loading: boolean;
 }) => {
   return (
     <>
@@ -54,25 +53,6 @@ export const FormRegister = (porps: {
           />
         </label>
       </div>
-
-      <button
-        className="btn btn-outline-warning fw-bold my-2 border-2"
-        type="submit"
-        disabled={porps.loading}
-      >
-        {porps.loading ? (
-          <>
-            <span
-              className="spinner-border spinner-border-sm me-2"
-              role="status"
-              aria-hidden="true"
-            ></span>
-            Loading...
-          </>
-        ) : (
-          "Register"
-        )}
-      </button>
     </>
   );
 };

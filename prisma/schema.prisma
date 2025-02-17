@@ -8,33 +8,46 @@ datasource db {
 }
 
 model User {
-  id                  Int @id @default(autoincrement())
-  name                String
-  password            String
-  customer_name       String 
-  customer_surname    String
-  birthday            Date
-  gender              String
-  phone_number        String @unique
-  zipcode             String
-  address             String
-  createdAt           DateTime @default(now())
+  id               Int      @id @default(autoincrement())
+  name             String
+  password         String
+  customer_name    String 
+  customer_surname String
+  birthday         DateTime
+  gender           String
+  phone_number     String @unique
+  zipcode          String
+  address          String
+  consent_data     Boolean?
+  consent_improve  Boolean?
+  createdAt        DateTime @default(now())
+
+  // Relations
+  sold             Sold[]
 }
 
 model Product {
-  id                  Int @id @default(autoincrement())
-  category            String
-  title               String
-  detail              String
-  stock               Int
-  price               Decimal @db.Numeric(10,2)
-  createdAt           DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  category  String
+  title     String
+  detail    String
+  stock     Int
+  price     Decimal
+  createdAt DateTime @default(now())
+
+  // Relations
+  sold      Sold[]
 }
 
 model Sold {
-  id                  Int @id @default(autoincrement())
-  product_id          Product @relation(fields: [product_id], references: [id]) 
-  price               Decimal @db.Numeric(10,2)
-  quantity            Int
-  createdAt           DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  product_id Int
+  user_id    Int
+  quantity   Int
+  price      Decimal
+  createdAt  DateTime @default(now())
+
+  // Relations
+  product    Product @relation(fields: [product_id], references: [id])
+  user       User    @relation(fields: [user_id], references: [id])
 }
