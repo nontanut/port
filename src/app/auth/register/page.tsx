@@ -19,7 +19,7 @@ export default function Register() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [birthday, setBirthday] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("F");
   const [phone, setPhone] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
@@ -181,6 +181,7 @@ export default function Register() {
                   className="btn btn-outline-light fw-bold border-2"
                   onClick={() => setStep(step - 1)}
                   disabled={step === 1}
+                  type="button"
                 >
                   Previous
                 </button>
@@ -188,7 +189,8 @@ export default function Register() {
                 {step === 4 ? (
                   <button
                     className="btn btn-outline-warning fw-bold border-2"
-                    type="submit"
+                    type="button"
+                    onClick={handleRegister}
                     disabled={loading}
                   >
                     {loading ? (
@@ -209,6 +211,7 @@ export default function Register() {
                     className="btn btn-outline-danger fw-bold border-2"
                     onClick={() => setStep(step + 1)}
                     disabled={step === 4}
+                    type="button"
                   >
                     Next
                   </button>

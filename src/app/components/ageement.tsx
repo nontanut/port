@@ -41,7 +41,7 @@ export const Agreement = (props: {
             checked={props.consentPersonal}
             onChange={(e) => props.setConsentPersonal(e.target.checked)}
           />
-          <label className="form-check-label">
+          <label className="form-check-label" htmlFor="check1">
             Consent to Provide Personal Data
           </label>
         </div>
@@ -54,8 +54,8 @@ export const Agreement = (props: {
             checked={props.consentImprove}
             onChange={(e) => props.setConsentImprove(e.target.checked)}
           />
-          <label className="form-check-label">
-            Consent for Data Usage to Improve Product Sevice or Offer
+          <label className="form-check-label" htmlFor="check2">
+            Consent for Data Usage to Improve Product Service or Offer
           </label>
         </div>
       </div>
