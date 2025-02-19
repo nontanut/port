@@ -8,6 +8,9 @@
     .subtitle-pdpa {
         display: none;
     }
+    .search-width {
+        width: 100%;
+    }
 }
 
 .scrollbar {
@@ -24,3 +27,8 @@
 .indent {
     text-indent: 10%;
 }
+
+.search-width {
+    width: 80%;
+}
+

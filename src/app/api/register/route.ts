@@ -58,12 +58,12 @@ export async function POST(req: Request) {
     }
 
     const existingUser = await prisma.user.findUnique({
-      where: { phone_number },
+      where: { name },
     });
 
     if (existingUser) {
       return NextResponse.json(
-        { msg: "Phone already exists" },
+        { msg: "Username already exists" },
         { status: 403 }
       );
     }

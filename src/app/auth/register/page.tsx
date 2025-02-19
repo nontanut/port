@@ -95,6 +95,12 @@ export default function Register() {
       router.push("/");
     } catch (err: any) {
       setError(err.message);
+
+      Swal.fire({
+        title: "Failled to register",
+        icon: "error",
+        text: `${error}`,
+      });
     } finally {
       setLoading(false);
     }
